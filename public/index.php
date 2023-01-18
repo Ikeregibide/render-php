@@ -11,7 +11,7 @@ function connect(){
         $dbname = "laraveldb_eh8k";
         $user = "laraveldb_eh8k_user";  
         $pass = "6O52moASVONqhvdyvekGmsD4trvzRjIz";
-        $dbh= new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+        $dbh = pg_connect("host=$host dbname=$dbname user=$user password=$pass");
         return $dbh;
     }
     catch(PDOException $e) {
