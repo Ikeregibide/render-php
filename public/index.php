@@ -55,8 +55,12 @@ function borrarTodo(){
 function select(){
     $dbh = connect();
     $sth = pg_query($dbh, "SELECT * FROM lista");
-
-        print_r($sth);
+    $val = pg_fetch_result($sth, 1, 0);
+    echo "Primer valor: ", $val, "\n";
+    $val = pg_fetch_result($sth, 2, 0);
+    echo "Segundo valor: ", $val, "\n";
+    $val = pg_fetch_result($sth, 3, 0);
+    echo "Tercer valor ", $val, "\n";
     
 }
 
