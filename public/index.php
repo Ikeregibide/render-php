@@ -22,7 +22,7 @@ function connect(){
     if(isset($_GET["producto"])){
         $dbh = connect();
         $data = array("nombre" => $_GET["producto"]);
-        $stmt = $dbh -> prepare("INSERT INTO lista (nombre) VALUES (:nombre)");
+        $stmt = pg_query($dbh,"INSERT INTO lista (nombre) VALUES (:nombre)");
         $stmt->execute($data);
     }
 
@@ -41,20 +41,20 @@ function connect(){
 function borrar(){
         $dbh = connect();
         $data = array("nombre" => $_GET['nombre']);
-        $stmt = $dbh -> prepare("DELETE FROM lista WHERE nombre = :nombre");
+        $stmt = pg_query($dbh,"DELETE FROM lista WHERE nombre = :nombre");
         $stmt->execute($data);
 
 }
 
 function borrarTodo(){
         $dbh = connect();
-        $stmt = $dbh -> prepare("DELETE FROM lista");
+        $stmt = pg_query($dbh,"DELETE FROM lista");
         $stmt->execute();
 }
 
 function select(){
     $dbh = connect();
-    $sth = $dbh -> query("SELECT * FROM lista");
+    $sth = pg_query($dbh, "SELECT * FROM lista");
         $lista = "<ul>";
         while($row = $sth->fetch()){
             $lista .= "<li>$row[1] (<a href=\"ejer1.php?accion=borrar&nombre=$row[1]\">Eliminar</a>) </li>";
