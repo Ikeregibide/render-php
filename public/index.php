@@ -55,13 +55,8 @@ function borrarTodo(){
 function select(){
     $dbh = connect();
     $sth = pg_query($dbh, "SELECT * FROM lista");
-        $lista = "<ul>";
-        while($row = $sth->fetch()){
-            $lista .= "<li>$row[1] (<a href=\"ejer1.php?accion=borrar&nombre=$row[1]\">Eliminar</a>) </li>";
-        }
 
-        $lista .= "</ul>";
-        print_r($lista);
+        print_r($sth);
     
 }
 
